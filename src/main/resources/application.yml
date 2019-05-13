@@ -1,0 +1,66 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8080
+  connection-timeout: 5000ms
+  servlet:
+    context-path: /netsafe-kg
+
+spring:
+  # 环境 dev|test|prod
+  profiles:
+    active: dev
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  redis:
+    open: true  # 是否开启redis缓存  true开启   false关闭
+    database: 0
+    host: localhost
+    port: 6379
+    password:    # 密码（默认为空）
+    timeout: 6000ms  # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms    # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /static/**
+  resources:
+    add-mappings: false
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*/*.xml
+  #实体扫描
+  type-aliases-package: cetc.netsafe.modules.*.model
+  configuration:
+        map-underscore-to-camel-case: true
+        default-fetch-size: 100
+        default-statement-timeout: 30
+        
+logging:
+  level:
+    cetc.netsafe: info
+    com.ibatis: info
+    com.ibatis.common.jdbc.SimpleDataSource: info
+    com.ibatis.common.jdbc.ScriptRunner: info
+    com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate: info
+    java.sql.Connection: info
+    java.sql.Statement: info
+    java.sql.PreparedStatement: info
+    java.sql.ResultSet: info
+    org.springframework.web.servlet: info
+    root: info

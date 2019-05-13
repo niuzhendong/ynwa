@@ -1,0 +1,51 @@
+spring:
+    servlet:
+        multipart:
+          max-file-size: 100000000
+          maxRequestSize: 100000000
+    datasource:
+        neo4j:
+            type: com.alibaba.druid.pool.DruidDataSource
+            driverClassName: org.neo4j.jdbc.Driver
+            url: jdbc:neo4j:bolt://localhost:7687
+            username: neo4j
+            password: nzd8712866
+        mysql:
+            type: com.alibaba.druid.pool.DruidDataSource
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://localhost:3306/sys?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+            username: root
+            password: 123456
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            pool-prepared-statements: true
+            max-pool-prepared-statement-per-connection-size: 20
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 1 FROM DUAL
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: false
+                wall:
+                    config:
+                        multi-statement-allow: true
+        postgres:
+            type: com.alibaba.druid.pool.DruidDataSource
+            driverClassName: org.neo4j.jdbc.Driver
+            url: jdbc:neo4j:bolt://localhost:7687
+            username: neo4j
+            password: nzd8712866
+        hive:
+            type: com.alibaba.druid.pool.DruidDataSource
+            driverClassName: org.apache.hive.jdbc.HiveDriver
+            url: jdbc:hive2://localhost:10002/default
+            username: cetc
+            password: cetc@2019
+                
